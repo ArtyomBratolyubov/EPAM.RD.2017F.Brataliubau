@@ -10,6 +10,7 @@ using System.Xml.Schema;
 using System.Xml.Serialization;
 using NLog;
 using ServiceLibrary.Exceptions;
+using ServiceLibrary.Interfaces;
 
 namespace ServiceLibrary.Concrete
 {

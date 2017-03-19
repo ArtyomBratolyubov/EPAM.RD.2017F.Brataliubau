@@ -1,4 +1,4 @@
-﻿namespace ServiceLibrary
+﻿namespace ServiceLibrary.Interfaces
 {
     /// <summary>
     ///     Exposes the algorithm, which supports genreating new id

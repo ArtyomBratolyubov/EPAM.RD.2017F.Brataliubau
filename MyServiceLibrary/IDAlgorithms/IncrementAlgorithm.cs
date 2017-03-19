@@ -1,4 +1,5 @@
 ﻿using System;
+using ServiceLibrary.Interfaces;
 
 namespace ServiceLibrary
 {
