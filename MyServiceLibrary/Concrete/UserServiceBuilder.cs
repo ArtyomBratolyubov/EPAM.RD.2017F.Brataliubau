@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Globalization;
 using System.Net;
 using System.Reflection;
+using System.Runtime.Remoting;
+using System.Security.Policy;
 using ServiceLibrary.Exceptions;
 using ServiceLibrary.Interfaces;
 
@@ -28,7 +30,8 @@ namespace ServiceLibrary.Concrete
 
                 object obj = null;
 
-                var domain = AppDomain.CreateDomain("ServiceDomain");
+                AppDomain domain = AppDomain.CreateDomain("ServiceDomain");
+
                 if (mode == "master")
                 {
                     var savePath = ConfigurationManager.AppSettings["DataPath"];
@@ -54,9 +57,10 @@ namespace ServiceLibrary.Concrete
                         logging
                     };
 
+                    Type t = typeof(MasterUserService);
                     obj = domain.CreateInstanceAndUnwrap(
                         "ServiceLibrary",
-                        "ServiceLibrary.Concrete.MasterUserService",
+                        t.FullName,
                         true,
                         BindingFlags.Default,
                         null,
@@ -96,7 +100,9 @@ namespace ServiceLibrary.Concrete
                     throw new WrongUserServiceModeException();
                 }
 
-                return obj as Service;
+                this.service = obj as IUserService;
+
+                return obj as IUserService;
             }
         }
     }

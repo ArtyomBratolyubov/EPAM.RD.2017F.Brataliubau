@@ -10,6 +10,7 @@ using NLog;
 
 namespace ServiceLibrary.Concrete
 {
+    [Serializable]
     public class SlaveUserService : Service
     {
         #region private fields
@@ -83,18 +84,13 @@ namespace ServiceLibrary.Concrete
         /// </summary>
         /// <param name="param">Search predicate</param>
         /// <returns>User object if user was found, otherwise null</returns>
-        public override User Search(Predicate<User> param)
+        public override User SearchById(int id)
         {
-            if (param == null)
-            {
-                throw new ArgumentNullException(nameof(param));
-            }
-
             lock (this.Data)
             {
                 foreach (var i in this.Data)
                 {
-                    if (param(i))
+                    if (i.Id == id)
                     {
                         return i;
                     }

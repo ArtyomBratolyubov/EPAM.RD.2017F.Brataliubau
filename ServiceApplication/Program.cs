@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Net.Sockets;
+using System.Runtime.Serialization;
 using ServiceLibrary;
 using ServiceLibrary.Concrete;
 using ServiceLibrary.Interfaces;
 
 namespace ServiceApplication
 {
+
     public class Program
     {
         public static void Main(string[] args)
@@ -48,13 +50,13 @@ namespace ServiceApplication
                         Console.WriteLine("ID: ");
                         int id = int.Parse(Console.ReadLine());
 
-                        service.Remove(service.Search(user => user.Id == id));
+                        service.Remove(service.SearchById(id));
                     }
                     if (a == 3)
                     {
                         Console.WriteLine("ID: ");
                         int id = int.Parse(Console.ReadLine());
-                        User user = service.Search(u => u.Id == id);
+                        User user = service.SearchById(id);
 
                         Console.WriteLine("ID: " + user.Id);
                         Console.WriteLine("Name: " + user.FirstName);
@@ -96,5 +98,6 @@ namespace ServiceApplication
 
 
         }
+
     }
 }

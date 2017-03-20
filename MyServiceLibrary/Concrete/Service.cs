@@ -4,8 +4,7 @@ using ServiceLibrary.Interfaces;
 
 namespace ServiceLibrary.Concrete
 {
-
-    public abstract class Service : IUserService
+    public abstract class Service : System.MarshalByRefObject, IUserService
     {
         #region protected fields
 
@@ -23,7 +22,7 @@ namespace ServiceLibrary.Concrete
 
         public abstract void Save();
 
-        public abstract User Search(Predicate<User> param);
+        public abstract User SearchById(int id);
 
         public IEnumerable<User> GetUsers()
         {

@@ -30,7 +30,7 @@ namespace ServiceLibrary.Interfaces
         /// </summary>
         /// <param name="param">Search predicate</param>
         /// <returns>User object if user was found, otherwise null</returns>
-        User Search(Predicate<User> param);
+        User SearchById(int id);
 
         void Save();
     }

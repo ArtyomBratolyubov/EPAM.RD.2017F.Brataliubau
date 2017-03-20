@@ -290,14 +290,9 @@ namespace ServiceLibrary.Concrete
         /// </summary>
         /// <param name="param">Search predicate</param>
         /// <returns>User object if user was found, otherwise null</returns>
-        public override User Search(Predicate<User> param)
+        public override User SearchById(int id)
         {
-            if (param == null)
-            {
-                throw new ArgumentNullException(nameof(param));
-            }
-
-            return this.SearchHelper(param);
+            return this.SearchHelper(user => user.Id == id);
         }
 
         #endregion
